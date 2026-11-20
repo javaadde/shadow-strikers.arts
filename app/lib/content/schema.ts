@@ -75,6 +75,8 @@ export const academySchema = z
         intro: z.string(),
         cta: z.string().default("Join now"),
       }),
+      /** Academy-wide phone numbers (digits with country code), shown as Call and WhatsApp. */
+      contacts: z.array(z.object({ phone })).default([]),
       founded: z
         .string()
         .regex(/^\d{4}$/)

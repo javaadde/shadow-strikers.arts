@@ -20,7 +20,7 @@ export function Container({
 type ButtonLinkProps = {
   href: string;
   children: React.ReactNode;
-  variant?: "solid" | "outline" | "light";
+  variant?: "solid" | "outline" | "light" | "ghost";
   className?: string;
   external?: boolean;
 };
@@ -38,6 +38,8 @@ export function ButtonLink({
     variant === "solid" && "bg-maroon text-paper hover:bg-crimson",
     variant === "outline" &&
       "border border-maroon/70 text-maroon hover:bg-maroon hover:text-paper",
+    variant === "ghost" &&
+      "border border-paper/70 text-paper hover:bg-paper hover:text-night",
     variant === "light" &&
       "bg-paper text-night hover:bg-blood hover:text-paper",
     className

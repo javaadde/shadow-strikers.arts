@@ -57,4 +57,11 @@ describe("academy content", () => {
       expect(branch.address).toBeTruthy();
     }
   });
+
+  it("lists the two academy phone numbers", () => {
+    expect(parseAcademy(raw).academy.contacts.map((c) => c.phone)).toEqual([
+      "917356998167",
+      "917034934327",
+    ]);
+  });
 });
