@@ -16,7 +16,12 @@ export function JsonLd() {
       name: `${academy.name} — ${branchPlace(branch)}`,
       url: absoluteUrl(branchPath(branch.slug)),
       image: absoluteUrl("/images/logo.webp"),
-      ...(branch.phone && { telephone: `+${branch.phone}` }),
+      telephone: [
+        ...(branch.phone ? [branch.phone] : []),
+        ...academy.contacts.map((c) => c.phone),
+      ]
+        .filter((phone, i, all) => all.indexOf(phone) === i)
+        .map((phone) => `+${phone}`),
       address: {
         "@type": "PostalAddress",
         addressLocality: branch.name,

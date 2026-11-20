@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { branchPath, branchPlace, content } from "@/app/lib/content";
-import { whatsappLink } from "@/app/lib/links";
+import { formatPhone, telLink, whatsappLink } from "@/app/lib/links";
 import { Container } from "../ui/primitives";
 
 export function Footer() {
@@ -27,7 +27,7 @@ export function Footer() {
 
   return (
     <footer className="night py-16">
-      <Container className="grid gap-10 sm:grid-cols-[auto_1fr_auto] sm:items-start">
+      <Container className="grid gap-10 sm:grid-cols-[auto_1fr_1fr_auto] sm:items-start">
         <Image
           src="/images/logo-sm.webp"
           alt={academy.name}
@@ -52,6 +52,25 @@ export function Footer() {
             ))}
           </ul>
         </nav>
+        {academy.contacts.length > 0 && (
+          <div>
+            <p className="font-accent text-sm uppercase tracking-[0.3em] text-blood">
+              Call us
+            </p>
+            <ul className="mt-3 space-y-2">
+              {academy.contacts.map(({ phone }) => (
+                <li key={phone}>
+                  <a
+                    href={telLink(phone)}
+                    className="font-display text-xl text-paper/85 hover:text-blood"
+                  >
+                    {formatPhone(phone)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         {social.length > 0 && (
           <ul className="flex gap-4">
             {social.map((item) => (

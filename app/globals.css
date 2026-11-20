@@ -18,12 +18,12 @@
   /* Artboard unit: the hero is laid out on the reference's 1920×1080 grid.
      1u = 1px at a 1920px-wide viewport; it scales with the viewport and stops growing at 2208px. */
   --u: min(calc(100vw / 1920), 1.15px);
-  --header-h: 4.5rem;
+  --header-h: 3.5rem;
 }
 
 @media (min-width: 1024px) {
   :root {
-    --header-h: max(4.5rem, calc(var(--u) * 174));
+    --header-h: max(3.5rem, calc(var(--u) * 87));
   }
 }
 

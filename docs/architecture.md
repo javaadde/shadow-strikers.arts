@@ -112,8 +112,12 @@ Locations (from the owner):
 | Cholackkal | Cholackkal      | Pandikkad – Manjeri Road, Cholackkal, Kerala | https://maps.app.goo.gl/bpJ5swWGJcXAYhAE6 |
 
 Manjeri is a big town, so always show the locality with it (`branchPlace()` in
-`app/lib/content/index.ts`). Phone and WhatsApp numbers are still unknown: those fields stay
-optional and their buttons only render once filled in.
+`app/lib/content/index.ts`).
+
+Phone: the owner gave two academy-wide numbers (+91 73569 98167, +91 70349 34327), stored in
+`academy.contacts`. They are not tied to a branch. Each gets Call and WhatsApp buttons in the
+contact section, and both are listed in the footer and the SEO data. Per-branch `phone` /
+`whatsapp` stay optional for when a branch gets its own number.
 
 ## 5. Page structure
 
@@ -121,7 +125,7 @@ Single landing page with anchor navigation, plus a static page per branch.
 
 | #   | Section        | Notes                                                                                                                                                                                                                                                                                                                                                                                                  |
 | --- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | Header / nav   | Logo left. Links: Home, Programs, About, Branches, Contact. Transparent over hero, solid on scroll. Mobile: full-screen menu.                                                                                                                                                                                                                                                                          |
+| 1   | Header / nav   | Half-height frosted-glass bar (blur on its own layer, firmer once scrolled). Logo left. Links: Home, Programs, About, Branches, Contact. Mobile: full-screen menu.                                                                                                                                                                                                                                     |
 | 2   | Hero           | A faithful build of the reference screen on its 1920×1080 artboard (`--u` unit, `hero.module.css`): transparent nav, two-line red serif headline, brush disc (`brush-disc.tsx`) behind the B/W students cut-out, hairlines, star rows, right-aligned intro and "Join now" pill, branch names bottom-left, social badges bottom-right. Stacks in one column below 1024px. Copy lives in `academy.hero`. |
 | 3   | About          | Story and values, beside the salute photo on a crimson brush disc.                                                                                                                                                                                                                                                                                                                                     |
 | 4   | Programs       | Cards per program/age group (kids, teens, adults, self-defence...).                                                                                                                                                                                                                                                                                                                                    |
@@ -239,7 +243,7 @@ Planned moments:
 
 ## 12. Open questions
 
-- Phone/WhatsApp numbers for both branches (owner to provide). Addresses and map links are in.
+- Which phone number belongs to which branch, if either does (both are shown academy-wide for now).
 - Name spelling: logo says "Shadow Strike", repo is `shadow-strikers.arts`. Which goes on the site?
 - Branch spelling: "Cholackkal" vs the common "Cholakkal".
 - Which disciplines are taught (Taekwondo, Karate, Kung Fu, kickboxing...)? Drives programs and copy.

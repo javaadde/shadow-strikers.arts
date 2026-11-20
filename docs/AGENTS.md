@@ -29,7 +29,7 @@ npm run check        # lint + typecheck + format:check + test (must pass before 
 ### Content
 
 - Every academy fact (names, addresses, phone numbers, timings, prices, bios) lives in `data/academy.json`, validated by the zod schema in `app/lib/content/schema.ts`. Never hard-code it in components.
-- Branch addresses and map links are in `data/academy.json`; phone and WhatsApp numbers are **not known yet**. Never invent addresses, phone numbers, prices, ranks, testimonials or founding dates. Leave the field empty and render a "coming soon" state, or ask.
+- Branch addresses and map links are in `data/academy.json`; the two academy phone numbers are in `academy.contacts` (not tied to a branch; don't guess which branch they belong to). Never invent addresses, phone numbers, prices, ranks, testimonials or founding dates. Leave the field empty and render a "coming soon" state, or ask.
 - Manjeri is a big town: always show the branch as "Pullur, Manjeri" (use `branchPlace()`), never just "Manjeri".
 - Spell the branches exactly `Manjeri` and `Cholackkal` until the owner confirms otherwise.
 
