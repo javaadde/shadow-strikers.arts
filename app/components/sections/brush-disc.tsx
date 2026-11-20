@@ -2,7 +2,8 @@
 
 import { m } from "framer-motion";
 import { useId } from "react";
-import { duration, ease, strokeDraw } from "@/app/lib/motion";
+import { duration, ease, strokeDraw, viewportOnce } from "@/app/lib/motion";
+import { cn } from "@/app/lib/utils";
 
 const W = 700;
 const H = 670;
@@ -30,11 +31,30 @@ const flicks = [
   { d: arc(40, 58, 14), w: 4 },
 ];
 
+const tones = {
+  crimson: { fill: "fill-crimson", stroke: "stroke-crimson" },
+  night: { fill: "fill-night", stroke: "stroke-night" },
+} as const;
+
 /**
- * The crimson brush-painted disc behind the hero photo: rough displaced edge,
- * pressed-leather texture, and a few dry-brush flicks. Decorative.
+ * Brush-painted disc behind a cut-out photo: rough displaced edge, pressed-leather
+ * texture, and a few dry-brush flicks. Decorative.
+ *
+ * `play="mount"` animates on load (hero); `play="view"` waits until it scrolls into view.
  */
-export function BrushDisc({ className }: { className?: string }) {
+export function BrushDisc({
+  className,
+  tone = "crimson",
+  play = "mount",
+}: {
+  className?: string;
+  tone?: keyof typeof tones;
+  play?: "mount" | "view";
+}) {
+  const trigger =
+    play === "view"
+      ? { whileInView: "show", viewport: viewportOnce }
+      : { animate: "show" };
   const id = useId().replace(/:/g, "");
   const brush = `brush-${id}`;
   const rough = `rough-${id}`;
@@ -109,8 +129,12 @@ export function BrushDisc({ className }: { className?: string }) {
 
       <m.g
         style={{ originX: "50%", originY: "50%" }}
-        initial={{ opacity: 0, scale: 0.86, rotate: -8 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        initial="hidden"
+        {...trigger}
+        variants={{
+          hidden: { opacity: 0, scale: 0.86, rotate: -8 },
+          show: { opacity: 1, scale: 1, rotate: 0 },
+        }}
         transition={{ duration: duration.slow, ease: ease.strike, delay: 0.15 }}
       >
         <ellipse
@@ -118,14 +142,14 @@ export function BrushDisc({ className }: { className?: string }) {
           cy={CY}
           rx={RX}
           ry={RY}
-          className="fill-crimson"
+          className={tones[tone].fill}
           filter={`url(#${brush})`}
         />
       </m.g>
 
       <m.g
         initial="hidden"
-        animate="show"
+        {...trigger}
         transition={{ staggerChildren: 0.12, delayChildren: 0.9 }}
         filter={`url(#${rough})`}
       >
@@ -134,7 +158,7 @@ export function BrushDisc({ className }: { className?: string }) {
             key={i}
             d={flick.d}
             fill="none"
-            className="stroke-crimson"
+            className={cn(tones[tone].stroke)}
             strokeWidth={flick.w}
             strokeLinecap="round"
             variants={strokeDraw}

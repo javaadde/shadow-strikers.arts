@@ -9,7 +9,7 @@ import { Join } from "@/app/components/sections/join";
 import { StarRow } from "@/app/components/ui/ornaments";
 import { Container, SectionHeading } from "@/app/components/ui/primitives";
 import { SiteShell } from "@/app/components/site/site-shell";
-import { content, getBranch } from "@/app/lib/content";
+import { branchPlace, content, getBranch } from "@/app/lib/content";
 import { dayLabels, formatTime, groupByDay } from "@/app/lib/schedule";
 
 export function generateStaticParams() {
@@ -24,8 +24,8 @@ export function generateMetadata({
   const branch = getBranch(params.slug);
   if (!branch) return {};
   return {
-    title: `${branch.name} branch`,
-    description: `${content.academy.name} in ${branch.name}, Kerala: location, class timings and how to join.`,
+    title: `${branchPlace(branch)} branch`,
+    description: `${content.academy.name} at ${branch.address ?? `${branchPlace(branch)}, Kerala`}: location, class timings and how to join.`,
     alternates: { canonical: `/branches/${branch.slug}` },
   };
 }
@@ -48,8 +48,8 @@ export default function BranchPage({ params }: { params: { slug: string } }) {
             <p className="mt-6 font-accent text-sm uppercase tracking-[0.35em] text-blood">
               {academy.shortName} branch
             </p>
-            <h1 className="mt-3 font-display text-6xl sm:text-7xl">
-              {branch.name}
+            <h1 className="mt-3 font-display text-5xl sm:text-7xl">
+              {branchPlace(branch)}
             </h1>
             <BranchAddress branch={branch} />
             <div className="mt-8 flex flex-wrap gap-3">

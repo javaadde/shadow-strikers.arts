@@ -23,7 +23,9 @@ const sessionSchema = z.object({
 const branchSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
   name: z.string().min(1),
-  // Not known yet: everything about the location is optional until the owner provides it.
+  /** Neighbourhood inside a big town, shown with the name: "Pullur" → "Pullur, Manjeri". */
+  locality: z.string().min(1).optional(),
+  /** Full one-line address as the owner gave it. */
   address: z.string().optional(),
   mapsUrl: url.optional(),
   geo: z.object({ lat: z.number(), lng: z.number() }).optional(),

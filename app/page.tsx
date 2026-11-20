@@ -5,7 +5,7 @@ import { Join } from "./components/sections/join";
 import { Programs } from "./components/sections/programs";
 import { JsonLd } from "./components/site/json-ld";
 import { SiteShell } from "./components/site/site-shell";
-import { content, socialLinks } from "./lib/content";
+import { branchPlace, content, socialLinks } from "./lib/content";
 
 export default function HomePage() {
   const { academy, branches, programs } = content;
@@ -17,7 +17,7 @@ export default function HomePage() {
         subtitle={academy.hero.subtitle}
         intro={academy.hero.intro}
         cta={academy.hero.cta}
-        branchNames={branches.map((b) => b.name)}
+        branchNames={branches.map(branchPlace)}
         social={socialLinks()}
       />
       <Programs programs={programs} />

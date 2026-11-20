@@ -9,8 +9,11 @@ this folder ships with the site; it is here to look at while building.
 | `tawkwondo-landing-template/8383802.psd` | Layered Photoshop source of the same template (~131 MB). **Git-ignored** because it is over GitHub's 100 MB limit; keep a copy outside the repo. |
 | `tawkwondo-landing-template/hero-board-1920.jpg` | The landing screen cropped out of the mockup and scaled to its 1920×1080 artboard. Measure hero positions against this. |
 | `tawkwondo-landing-template/students-cutout.png` | The template's colour cut-out of the two students (owner-supplied). Source for `public/images/hero-students.webp`. |
-| `brand/shadow-strike-logo.webp` | The academy logo (1280×1071): dragon, crossed katanas, red ring, "Martial Arts Academy" banner, "SS" monogram. |
-| `brand/shadow-strike-logo-paper.png` | Site version of the logo (1180×1180): parchment outside the red ring so the lettering is readable, black disc kept inside. Source for `public/images/logo*.webp`. |
+| `brand/shadow-strike-logo.webp` | The academy logo as supplied (896×1195): flat black and red print on white paper. |
+| `brand/shadow-strike-logo-paper.png` | Site version (988×988): the ink lifted onto parchment, centred on the red ring so it crops to a circle. Source for `public/images/logo*.webp`, `og.jpg` and `app/icon.png`. |
+| `brand/shadow-strike-logo-transparent.png` | Same, on a transparent background. |
+| `photos/student-salute.png` | B/W cut-out, student bowing with a fist-in-palm salute (owner-supplied, from a template). Used in About. |
+| `photos/student-stance.png` | B/W cut-out, student in a fighting stance (owner-supplied, from a template). Used in Join. |
 
 Source zip: `traditional-tawkwondo-martial-arts-landing-page-template.zip`.
 

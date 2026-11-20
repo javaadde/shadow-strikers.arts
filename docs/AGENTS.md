@@ -29,7 +29,8 @@ npm run check        # lint + typecheck + format:check + test (must pass before 
 ### Content
 
 - Every academy fact (names, addresses, phone numbers, timings, prices, bios) lives in `data/academy.json`, validated by the zod schema in `app/lib/content/schema.ts`. Never hard-code it in components.
-- Branch addresses and map links are **not known yet**. Never invent addresses, phone numbers, prices, ranks, testimonials or founding dates. Leave the field empty and render a "coming soon" state, or ask.
+- Branch addresses and map links are in `data/academy.json`; phone and WhatsApp numbers are **not known yet**. Never invent addresses, phone numbers, prices, ranks, testimonials or founding dates. Leave the field empty and render a "coming soon" state, or ask.
+- Manjeri is a big town: always show the branch as "Pullur, Manjeri" (use `branchPlace()`), never just "Manjeri".
 - Spell the branches exactly `Manjeri` and `Cholackkal` until the owner confirms otherwise.
 
 ### Design
@@ -38,7 +39,7 @@ npm run check        # lint + typecheck + format:check + test (must pass before 
 - Use the colour tokens (`paper`, `ink`, `crimson`, `blood`, `maroon`, `night`, `steel`). No raw hex values in components.
 - Use `cn()` from `app/lib/utils.ts` to combine classes.
 - Mobile first. Check every change at 375px wide as well as desktop.
-- The home hero uses the template's students photo (`public/images/hero-students.webp`) at the owner's request. Swap it for the academy's own photo when one is available. Don't add other template assets.
+- Template photos used at the owner's request: `hero-students.webp` (hero), `student-salute.webp` (About), `student-stance.webp` (Join). Swap them for the academy's own photos when available. Don't add other template assets.
 - The home hero is laid out on the reference's 1920×1080 artboard with the `--u` unit (`app/components/sections/hero.module.css`). Keep new hero elements on that grid and check them against `references/tawkwondo-landing-template/hero-board-1920.jpg`.
 
 ### Motion

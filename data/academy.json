@@ -24,11 +24,16 @@
     {
       "slug": "manjeri",
       "name": "Manjeri",
+      "locality": "Pullur",
+      "address": "Pullur, Manjeri, Kerala",
+      "mapsUrl": "https://maps.app.goo.gl/mJXyA252QEBqFi8p7",
       "schedule": []
     },
     {
       "slug": "cholackkal",
       "name": "Cholackkal",
+      "address": "Pandikkad – Manjeri Road, Cholackkal, Kerala",
+      "mapsUrl": "https://maps.app.goo.gl/bpJ5swWGJcXAYhAE6",
       "schedule": []
     }
   ],

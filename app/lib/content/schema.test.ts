@@ -50,4 +50,11 @@ describe("academy content", () => {
     (data.branches[0] as Record<string, unknown>).phone = "+91 98765 43210";
     expect(academySchema.safeParse(data).success).toBe(false);
   });
+
+  it("has map links and addresses for both branches", () => {
+    for (const branch of parseAcademy(raw).branches) {
+      expect(branch.mapsUrl).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
+      expect(branch.address).toBeTruthy();
+    }
+  });
 });

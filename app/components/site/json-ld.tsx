@@ -1,4 +1,9 @@
-import { absoluteUrl, branchPath, content } from "@/app/lib/content";
+import {
+  absoluteUrl,
+  branchPath,
+  branchPlace,
+  content,
+} from "@/app/lib/content";
 
 /** schema.org data for each branch, so search engines can show it as a local listing. */
 export function JsonLd() {
@@ -8,7 +13,7 @@ export function JsonLd() {
     "@graph": branches.map((branch) => ({
       "@type": "SportsActivityLocation",
       "@id": absoluteUrl(branchPath(branch.slug)),
-      name: `${academy.name} — ${branch.name}`,
+      name: `${academy.name} — ${branchPlace(branch)}`,
       url: absoluteUrl(branchPath(branch.slug)),
       image: absoluteUrl("/images/logo.webp"),
       ...(branch.phone && { telephone: `+${branch.phone}` }),

@@ -1,6 +1,6 @@
 import raw from "../../../data/academy.json";
 import { whatsappLink } from "../links";
-import { parseAcademy } from "./schema";
+import { parseAcademy, type Branch } from "./schema";
 
 /** Validated site content. A bad edit to data/academy.json fails the build here. */
 export const content = parseAcademy(raw);
@@ -13,6 +13,11 @@ export const absoluteUrl = (path: string) =>
   `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 
 export const branchPath = (slug: string) => `/branches/${slug}`;
+
+/** "Pullur, Manjeri" when the branch has a locality, otherwise just the town. */
+export function branchPlace(branch: Pick<Branch, "name" | "locality">) {
+  return branch.locality ? `${branch.locality}, ${branch.name}` : branch.name;
+}
 
 export function getBranch(slug: string) {
   return content.branches.find((branch) => branch.slug === slug);

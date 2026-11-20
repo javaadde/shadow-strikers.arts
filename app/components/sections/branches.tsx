@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { branchPath } from "@/app/lib/content";
+import { branchPath, branchPlace } from "@/app/lib/content";
 import type { Branch } from "@/app/lib/content/schema";
 import { telLink, whatsappLink } from "@/app/lib/links";
+import { cn } from "@/app/lib/utils";
 import { RevealGroup, RevealItem } from "../motion/reveal";
 import { ButtonLink, Container, SectionHeading } from "../ui/primitives";
 
@@ -22,7 +23,7 @@ export function Branches({
         <SectionHeading
           id="branches-title"
           eyebrow="Branches"
-          title={`Train with us in ${branches.map((b) => b.name).join(" or ")}`}
+          title={`Train with us in ${branches.map(branchPlace).join(" or ")}`}
         />
         <RevealGroup as="ul" className="mt-14 grid gap-6 md:grid-cols-2">
           {branches.map((branch) => (
@@ -35,7 +36,17 @@ export function Branches({
                 aria-hidden
                 className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border-[14px] border-blood/70"
               />
-              <h3 className="font-display text-4xl">
+              {branch.locality && (
+                <p className="font-accent text-sm font-medium uppercase tracking-[0.3em] text-blood">
+                  {branch.locality}
+                </p>
+              )}
+              <h3
+                className={cn(
+                  "font-display text-4xl",
+                  branch.locality && "mt-2"
+                )}
+              >
                 <Link
                   href={branchPath(branch.slug)}
                   className="hover:text-blood"
@@ -83,7 +94,7 @@ export function BranchActions({
           external
           href={whatsappLink(
             branch.whatsapp,
-            `Hi ${academyName} (${branch.name}), I'd like to know more about classes.`
+            `Hi ${academyName} (${branchPlace(branch)}), I'd like to know more about classes.`
           )}
         >
           WhatsApp

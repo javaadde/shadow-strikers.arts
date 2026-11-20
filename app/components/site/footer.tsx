@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { branchPath, content } from "@/app/lib/content";
+import { branchPath, branchPlace, content } from "@/app/lib/content";
 import { whatsappLink } from "@/app/lib/links";
 import { Container } from "../ui/primitives";
 
@@ -46,7 +46,7 @@ export function Footer() {
                   href={branchPath(branch.slug)}
                   className="font-display text-xl text-paper/85 hover:text-blood"
                 >
-                  {branch.name}
+                  {branchPlace(branch)}
                 </Link>
               </li>
             ))}

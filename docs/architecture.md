@@ -89,8 +89,9 @@ academy: {
 branches: Array<{
   slug: "manjeri" | "cholackkal",
   name: string,
-  address: string,             // TODO: owner will provide
-  mapsUrl?: string,            // TODO: owner will provide
+  locality?: string,           // neighbourhood in a big town, e.g. "Pullur" → "Pullur, Manjeri"
+  address?: string,            // one line, as the owner gave it
+  mapsUrl?: string,            // Google Maps share link
   geo?: { lat: number, lng: number },
   phone?: string,
   whatsapp?: string,
@@ -103,8 +104,16 @@ gallery: Array<{ src, alt, width, height }>
 site: { title, description, url }
 ```
 
-Branch addresses and map links are **not known yet**. Keep them optional in the schema and
-render a "Location coming soon" state until they are filled in.
+Locations (from the owner):
+
+| Branch     | Shown as        | Address                                      | Map                                       |
+| ---------- | --------------- | -------------------------------------------- | ----------------------------------------- |
+| Manjeri    | Pullur, Manjeri | Pullur, Manjeri, Kerala                      | https://maps.app.goo.gl/mJXyA252QEBqFi8p7 |
+| Cholackkal | Cholackkal      | Pandikkad – Manjeri Road, Cholackkal, Kerala | https://maps.app.goo.gl/bpJ5swWGJcXAYhAE6 |
+
+Manjeri is a big town, so always show the locality with it (`branchPlace()` in
+`app/lib/content/index.ts`). Phone and WhatsApp numbers are still unknown: those fields stay
+optional and their buttons only render once filled in.
 
 ## 5. Page structure
 
@@ -114,14 +123,14 @@ Single landing page with anchor navigation, plus a static page per branch.
 | --- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 1   | Header / nav   | Logo left. Links: Home, Programs, About, Branches, Contact. Transparent over hero, solid on scroll. Mobile: full-screen menu.                                                                                                                                                                                                                                                                          |
 | 2   | Hero           | A faithful build of the reference screen on its 1920×1080 artboard (`--u` unit, `hero.module.css`): transparent nav, two-line red serif headline, brush disc (`brush-disc.tsx`) behind the B/W students cut-out, hairlines, star rows, right-aligned intro and "Join now" pill, branch names bottom-left, social badges bottom-right. Stacks in one column below 1024px. Copy lives in `academy.hero`. |
-| 3   | About          | Story and values of the academy.                                                                                                                                                                                                                                                                                                                                                                       |
+| 3   | About          | Story and values, beside the salute photo on a crimson brush disc.                                                                                                                                                                                                                                                                                                                                     |
 | 4   | Programs       | Cards per program/age group (kids, teens, adults, self-defence...).                                                                                                                                                                                                                                                                                                                                    |
 | 5   | Instructors    | Portrait, rank (belt/dan), short bio.                                                                                                                                                                                                                                                                                                                                                                  |
 | 6   | Schedule       | Tabs per branch, weekly timetable.                                                                                                                                                                                                                                                                                                                                                                     |
 | 7   | Branches       | Two cards: Manjeri, Cholackkal. Address, map link, call and WhatsApp buttons.                                                                                                                                                                                                                                                                                                                          |
 | 8   | Gallery        | Photo grid with lightbox.                                                                                                                                                                                                                                                                                                                                                                              |
 | 9   | Testimonials   | Quotes from students/parents.                                                                                                                                                                                                                                                                                                                                                                          |
-| 10  | Join / contact | CTA band; WhatsApp deep link per branch. No backend (static export).                                                                                                                                                                                                                                                                                                                                   |
+| 10  | Join / contact | CTA band with a card per branch (address, map, call, WhatsApp) and the fighting-stance photo on a black brush disc. No backend (static export).                                                                                                                                                                                                                                                        |
 | 11  | Footer         | Logo, branches, socials, copyright.                                                                                                                                                                                                                                                                                                                                                                    |
 
 `/branches/manjeri` and `/branches/cholackkal`: address, map, that branch's timetable and
@@ -132,7 +141,7 @@ instructors. Good for local search ("martial arts Manjeri").
 Two sources must be reconciled:
 
 - **Reference template**: warm parchment, crimson, maroon, serif display, textured, traditional.
-- **Academy logo**: black, bright red, steel grey, dragon and katanas, heavy 3D type.
+- **Academy logo**: black and red flat print: dragon, crossed katanas, red ring, banner, "SS" monogram.
 
 Decision: use the reference's **layout, texture and type system**, retinted with the
 **logo's red and black**, so the logo sits naturally on the page. Dark sections
@@ -166,8 +175,8 @@ Check text contrast (WCAG AA) for every pairing used.
 
 ### Logo
 
-- Use the parchment version (`public/images/logo.webp`, `logo-sm.webp`): parchment outside the red ring so the dark "SHADOW STRIKE" lettering is readable, original black disc inside the ring.
-- Always show it fully round (`rounded-full`). Source: `references/brand/shadow-strike-logo-paper.png`.
+- Use the parchment version (`public/images/logo.webp`, `logo-sm.webp`): the flat black-and-red logo lifted off its white paper onto parchment, centred on the red ring.
+- Always show it fully round (`rounded-full`). Sources: `references/brand/shadow-strike-logo-paper.png` (parchment) and `shadow-strike-logo-transparent.png` (transparent, for future use on other backgrounds).
 
 ### Ornaments and texture
 
@@ -230,7 +239,7 @@ Planned moments:
 
 ## 12. Open questions
 
-- Addresses, map links and phone/WhatsApp numbers for Manjeri and Cholackkal (owner to provide).
+- Phone/WhatsApp numbers for both branches (owner to provide). Addresses and map links are in.
 - Name spelling: logo says "Shadow Strike", repo is `shadow-strikers.arts`. Which goes on the site?
 - Branch spelling: "Cholackkal" vs the common "Cholakkal".
 - Which disciplines are taught (Taekwondo, Karate, Kung Fu, kickboxing...)? Drives programs and copy.
