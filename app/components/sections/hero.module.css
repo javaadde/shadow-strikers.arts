@@ -1,0 +1,265 @@
+/*
+ * Hero geometry, measured from references/tawkwondo-landing-template/hero-board-1920.jpg.
+ * On large screens every element is placed on the reference's 1920×1080 artboard with the
+ * `--u` unit (1u = 1px at 1920px wide, see globals.css), so the layout matches the reference
+ * at any desktop width. Below 1024px the same elements stack in a single column.
+ */
+
+.board {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--header-h) + 2.25rem) 1rem 3rem;
+}
+
+@media (min-width: 640px) {
+  .board {
+    padding-inline: 2rem;
+  }
+}
+
+/* ---------- mobile / tablet flow ---------- */
+
+.copy {
+  order: 1;
+}
+
+.title {
+  font-size: clamp(2.6rem, 11.5vw, 4.5rem);
+  line-height: 0.95;
+}
+
+.subtitle {
+  margin-top: 0.9rem;
+  font-size: clamp(1.15rem, 4.6vw, 1.6rem);
+  line-height: 1.25;
+}
+
+.starsLeft {
+  order: 2;
+  margin-top: 1.5rem;
+}
+
+.visual {
+  order: 3;
+  position: relative;
+  width: min(100%, 26rem);
+  aspect-ratio: 700 / 1000;
+  margin: 1.25rem auto 0;
+  overflow: hidden;
+}
+
+.circle {
+  position: absolute;
+  left: 0;
+  top: 23.6%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 700 / 670;
+}
+
+.photo {
+  position: absolute;
+  left: 0.7%;
+  top: 7.9%;
+  width: 97.9%;
+}
+
+.side {
+  order: 4;
+  margin-top: 2rem;
+}
+
+.intro {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.cta {
+  margin-top: 1.5rem;
+}
+
+.foot {
+  order: 5;
+  margin-top: 2.5rem;
+}
+
+.ruleLeft,
+.ruleRight,
+.ruleTop,
+.starTop,
+.starsRight,
+.starsRight.row,
+.starBottom {
+  display: none;
+}
+
+/* ---------- desktop: the reference artboard ---------- */
+
+@media (min-width: 1024px) {
+  .board {
+    display: block;
+    width: 100%;
+    max-width: 2208px;
+    height: calc(var(--u) * 1080);
+    margin-inline: auto;
+    padding: 0;
+  }
+
+  .copy,
+  .starsLeft,
+  .visual,
+  .side,
+  .foot,
+  .ruleLeft,
+  .ruleRight,
+  .ruleTop,
+  .starTop,
+  .starsRight,
+  .starBottom {
+    display: block;
+    position: absolute;
+    margin: 0;
+  }
+
+  /* Hairlines. The outer ones run to the viewport edge on screens wider than the artboard. */
+  .ruleLeft {
+    top: calc(var(--u) * 279);
+    left: calc((100% - 100vw) / 2);
+    width: calc((100vw - 100%) / 2 + var(--u) * 1010);
+    height: max(2px, calc(var(--u) * 4));
+    transform-origin: left center;
+  }
+
+  .ruleRight {
+    top: calc(var(--u) * 795);
+    left: calc(var(--u) * 1350);
+    right: calc((100% - 100vw) / 2);
+    height: max(2px, calc(var(--u) * 4));
+    transform-origin: right center;
+  }
+
+  .ruleTop {
+    top: 0;
+    left: calc(var(--u) * 1027);
+    width: max(2px, calc(var(--u) * 3));
+    height: calc(var(--u) * 120);
+    transform-origin: center top;
+  }
+
+  .copy {
+    left: calc(var(--u) * 80);
+    top: calc(var(--u) * 436);
+  }
+
+  /* Reference is 81u, but "SHADOW STRIKE" sets wider than "TAEKWONDO"; 76u keeps it clear of the disc. */
+  .title {
+    font-size: calc(var(--u) * 76);
+    line-height: calc(var(--u) * 75);
+  }
+
+  .subtitle {
+    margin-top: calc(var(--u) * 24);
+    font-size: max(1rem, calc(var(--u) * 33));
+    line-height: 1.2;
+  }
+
+  .starsLeft {
+    left: calc(var(--u) * 77);
+    top: calc(var(--u) * 821);
+  }
+
+  .starsRight {
+    left: calc(var(--u) * 1600);
+    top: calc(var(--u) * 270);
+  }
+
+  .starTop {
+    left: calc(var(--u) * 1284);
+    top: calc(var(--u) * 215);
+  }
+
+  .starBottom {
+    left: calc(var(--u) * 595);
+    top: calc(var(--u) * 795);
+  }
+
+  .visual {
+    left: calc(var(--u) * 695);
+    top: 0;
+    width: calc(var(--u) * 700);
+    height: calc(var(--u) * 1080);
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+
+  .side {
+    right: calc(var(--u) * 76);
+    top: calc(var(--u) * 441);
+    width: calc(var(--u) * 520);
+    text-align: right;
+  }
+
+  .intro {
+    margin-left: auto;
+    max-width: calc(var(--u) * 500);
+    font-size: max(0.875rem, calc(var(--u) * 21));
+    line-height: 1.22;
+  }
+
+  .cta {
+    margin-top: calc(var(--u) * 52);
+  }
+
+  .foot {
+    left: calc(var(--u) * 80);
+    right: calc(var(--u) * 76);
+    top: calc(var(--u) * 995);
+  }
+}
+
+/* Star sizes on the artboard (stars are 22u in the rows, 57u when alone). */
+.rowStar {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.bigStar {
+  width: calc(var(--u) * 57);
+  height: calc(var(--u) * 57);
+}
+
+.row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .starsRight.row {
+    display: flex;
+  }
+
+  .rowStar {
+    width: max(0.7rem, calc(var(--u) * 22));
+    height: max(0.7rem, calc(var(--u) * 22));
+  }
+
+  .row {
+    gap: calc(var(--u) * 19);
+  }
+}
+
+/* "JOIN NOW" pill: 268×67u with the reference's pressed-leather texture. */
+.button {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='l'><feTurbulence type='fractalNoise' baseFrequency='.11' numOctaves='2' seed='5' stitchTiles='stitch'/><feDiffuseLighting surfaceScale='1.6' lighting-color='white'><feDistantLight azimuth='235' elevation='55'/></feDiffuseLighting><feComponentTransfer><feFuncR type='linear' slope='1.2'/><feFuncG type='linear' slope='1.2'/><feFuncB type='linear' slope='1.2'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23l)'/></svg>");
+  background-blend-mode: multiply;
+}
+
+@media (min-width: 1024px) {
+  .button {
+    min-width: calc(var(--u) * 268);
+    min-height: max(2.75rem, calc(var(--u) * 67));
+    padding-inline: calc(var(--u) * 36);
+    font-size: max(0.9rem, calc(var(--u) * 25));
+  }
+}

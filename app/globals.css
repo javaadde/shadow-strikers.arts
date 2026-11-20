@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Colour tokens as RGB channels so Tailwind opacity modifiers work (bg-ink/60).
+   See docs/architecture.md section 6 for where each value comes from. */
+:root {
+  --paper: 227 210 181; /* #E3D2B5 */
+  --paper-shade: 204 182 162; /* #CCB6A2 */
+  --ink: 74 26 38; /* #4A1A26  reference body/nav text */
+  --crimson: 163 22 58; /* #A3163A  reference brush circle */
+  --blood: 210 30 45; /* #D21E2D  reference headline + stars */
+  --maroon: 107 26 42; /* #6B1A2A  reference button */
+  --night: 14 10 11; /* #0E0A0B */
+  --steel: 58 58 60; /* #3A3A3C */
+  --rule: 102 100 95; /* #66645F  reference hairlines */
+
+  /* Artboard unit: the hero is laid out on the reference's 1920×1080 grid.
+     1u = 1px at a 1920px-wide viewport; it scales with the viewport and stops growing at 2208px. */
+  --u: min(calc(100vw / 1920), 1.15px);
+  --header-h: 4.5rem;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: max(4.5rem, calc(var(--u) * 174));
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply bg-paper font-sans text-ink antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  @apply bg-blood text-paper;
+}
+
+:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-blood;
+}
+
+@layer components {
+  /* Aged paper: SVG grain + soft stains, small enough to tile. */
+  .paper {
+    @apply relative isolate bg-paper;
+  }
+  .paper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(
+        ellipse 60% 40% at 15% 30%,
+        rgb(var(--paper-shade) / 0.45),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 50% 35% at 85% 75%,
+        rgb(var(--paper-shade) / 0.4),
+        transparent 70%
+      ),
+      /* white specks and scratches */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='.9 .35' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 9 -6.1'/></filter><rect width='100%' height='100%' filter='url(%23s)' opacity='.55'/></svg>"),
+      /* fine grain */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+      /* large tea stains */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900'><filter id='t'><feTurbulence type='fractalNoise' baseFrequency='.004' numOctaves='4' seed='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .78 0 0 0 0 .6 0 0 0 0 .4 0 0 0 1.6 -.75'/></filter><rect width='100%' height='100%' filter='url(%23t)' opacity='.5'/></svg>");
+  }
+
+  .night {
+    @apply relative isolate bg-night text-paper;
+  }
+}

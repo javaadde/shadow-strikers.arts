@@ -1,0 +1,51 @@
+{
+  "site": {
+    "title": "Shadow Strike Martial Arts Academy — Manjeri & Cholackkal",
+    "description": "Shadow Strike Martial Arts Academy trains students at two branches in Kerala: Manjeri and Cholackkal."
+  },
+  "academy": {
+    "name": "Shadow Strike Martial Arts Academy",
+    "shortName": "Shadow Strike",
+    "tagline": "Martial Arts Academy",
+    "motto": "Discipline. Respect. Strength.",
+    "about": [
+      "Shadow Strike is a martial arts academy with two branches in Kerala, in Manjeri and Cholackkal.",
+      "Placeholder: the academy's story, style and values go here. Replace this paragraph with real copy from the owner."
+    ],
+    "hero": {
+      "titleLines": ["Shadow Strike", "Martial Arts"],
+      "subtitle": "academy in Manjeri & Cholackkal",
+      "intro": "Discipline, respect and strength. Train with Shadow Strike and build the focus, fitness and confidence of a martial artist.",
+      "cta": "Join now"
+    },
+    "contacts": [
+      {
+        "phone": "917356998167"
+      },
+      {
+        "phone": "917034934327"
+      }
+    ],
+    "social": {}
+  },
+  "branches": [
+    {
+      "slug": "manjeri",
+      "name": "Manjeri",
+      "locality": "Pullur",
+      "address": "Pullur, Manjeri, Kerala",
+      "mapsUrl": "https://maps.app.goo.gl/mJXyA252QEBqFi8p7",
+      "schedule": []
+    },
+    {
+      "slug": "cholackkal",
+      "name": "Cholackkal",
+      "address": "Pandikkad – Manjeri Road, Cholackkal, Kerala",
+      "mapsUrl": "https://maps.app.goo.gl/bpJ5swWGJcXAYhAE6",
+      "schedule": []
+    }
+  ],
+  "programs": [],
+  "instructors": [],
+  "testimonials": []
+}
