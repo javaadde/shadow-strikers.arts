@@ -100,7 +100,10 @@ export default function BranchPage({ params }: { params: { slug: string } }) {
         </Container>
       </section>
 
-      <Join branches={[branch]} academyName={academy.name} />
+      <Join
+        academyName={academy.name}
+        contacts={academy.contacts}
+      />
     </SiteShell>
   );
 }
