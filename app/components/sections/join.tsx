@@ -1,20 +1,20 @@
 import Image from "next/image";
-import { branchPlace } from "@/app/lib/content";
-import type { Branch } from "@/app/lib/content/schema";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatPhone, telLink, whatsappLink } from "@/app/lib/links";
 import { Reveal } from "../motion/reveal";
 import { StarRow } from "../ui/ornaments";
-import { Container } from "../ui/primitives";
-import { BranchActions } from "./branches";
+import { ButtonLink, Container } from "../ui/primitives";
 import { BrushDisc } from "./brush-disc";
 
 export function Join({
-  branches,
   academyName,
+  contacts,
 }: {
-  branches: Branch[];
   academyName: string;
+  contacts: { phone: string }[];
 }) {
-  const reachable = branches.filter((b) => b.whatsapp || b.phone || b.mapsUrl);
   return (
     <section
       id="contact"
@@ -40,27 +40,53 @@ export function Join({
             </p>
           </Reveal>
 
-          {reachable.length > 0 ? (
+          {contacts.length > 0 && (
             <ul className="mt-10 grid gap-5 sm:grid-cols-2">
-              {reachable.map((branch) => (
-                <li key={branch.slug} className="rounded-2xl bg-night/30 p-6">
-                  <p className="font-display text-2xl">{branchPlace(branch)}</p>
-                  {branch.address && (
-                    <p className="mt-1 text-sm text-paper/75">
-                      {branch.address}
-                    </p>
-                  )}
+              {contacts.map(({ phone }) => (
+                <li key={phone} className="rounded-2xl bg-night/30 p-6">
+                  <p className="font-accent text-sm font-medium uppercase tracking-[0.25em] text-paper/70">
+                    Call or WhatsApp
+                  </p>
+                  <p className="mt-2 font-display text-2xl">
+                    <a href={telLink(phone)} className="hover:underline">
+                      {formatPhone(phone)}
+                    </a>
+                  </p>
                   <div className="mt-5 flex flex-wrap gap-3">
-                    <BranchActions branch={branch} academyName={academyName} />
+                    <ButtonLink href={telLink(phone)} variant="light">
+                      <FontAwesomeIcon
+                        icon={faPhone}
+                        aria-hidden="true"
+                        className="size-4 shrink-0"
+                      />
+                      Call
+                    </ButtonLink>
+                    <ButtonLink
+                      external
+                      variant="ghost"
+                      href={whatsappLink(
+                        phone,
+                        `Hi ${academyName}, I'd like to know more about classes.`
+                      )}
+                    >
+                      <FontAwesomeIcon
+                        icon={faWhatsapp}
+                        aria-hidden="true"
+                        className="size-4 shrink-0"
+                      />
+                      WhatsApp
+                    </ButtonLink>
                   </div>
                 </li>
               ))}
             </ul>
-          ) : (
+          )}
+
+          {contacts.length === 0 ? (
             <p className="mt-10 font-accent uppercase tracking-[0.3em] text-paper/80">
               Contact details coming soon
             </p>
-          )}
+          ) : null}
         </div>
 
         {/* Fighting stance standing on the section's bottom edge. */}

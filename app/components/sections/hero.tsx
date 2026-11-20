@@ -3,6 +3,7 @@
 import { m, useScroll, useTransform, type Variants } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
+import { whatsappLink } from "@/app/lib/links";
 import { duration, ease, fadeUp, stagger } from "@/app/lib/motion";
 import { cn } from "@/app/lib/utils";
 import { AnimatedStar } from "../ui/ornaments";
@@ -16,6 +17,8 @@ type HeroProps = {
   subtitle: string;
   intro: string;
   cta: string;
+  academyName: string;
+  contactPhone?: string;
   branchNames: string[];
   social: SocialLink[];
 };
@@ -43,6 +46,8 @@ export function Hero({
   subtitle,
   intro,
   cta,
+  academyName,
+  contactPhone,
   branchNames,
   social,
 }: HeroProps) {
@@ -149,7 +154,18 @@ export function Hero({
             {intro}
           </m.p>
           <m.div variants={slideIn} className={styles.cta}>
-            <ButtonLink href="/#contact" className={styles.button}>
+            <ButtonLink
+              href={
+                contactPhone
+                  ? whatsappLink(
+                      contactPhone,
+                      `Hi ${academyName}, I'd like to know more about classes.`
+                    )
+                  : "/#contact"
+              }
+              external={Boolean(contactPhone)}
+              className={styles.button}
+            >
               {cta}
             </ButtonLink>
           </m.div>

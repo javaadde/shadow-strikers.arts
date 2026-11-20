@@ -16,6 +16,9 @@
     "dev:mobile": "next dev --hostname 0.0.0.0"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.3.1",
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
+    "@fortawesome/react-fontawesome": "^3.5.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.30",
     "next": "14.2.6",

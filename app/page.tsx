@@ -17,6 +17,8 @@ export default function HomePage() {
         subtitle={academy.hero.subtitle}
         intro={academy.hero.intro}
         cta={academy.hero.cta}
+        academyName={academy.name}
+        contactPhone={academy.contacts[0]?.phone}
         branchNames={branches.map(branchPlace)}
         social={socialLinks()}
       />
@@ -27,7 +29,10 @@ export default function HomePage() {
         motto={academy.motto}
       />
       <Branches branches={branches} academyName={academy.name} />
-      <Join branches={branches} academyName={academy.name} />
+      <Join
+        academyName={academy.name}
+        contacts={academy.contacts}
+      />
     </SiteShell>
   );
 }

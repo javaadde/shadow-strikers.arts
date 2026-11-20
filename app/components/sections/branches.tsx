@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { faCircleInfo, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { branchPath, branchPlace } from "@/app/lib/content";
 import type { Branch } from "@/app/lib/content/schema";
 import { telLink, whatsappLink } from "@/app/lib/links";
@@ -58,6 +60,11 @@ export function Branches({
               <div className="mt-8 flex flex-wrap gap-3">
                 <BranchActions branch={branch} academyName={academyName} />
                 <ButtonLink href={branchPath(branch.slug)} variant="light">
+                  <FontAwesomeIcon
+                    icon={faCircleInfo}
+                    aria-hidden="true"
+                    className="size-4 shrink-0"
+                  />
                   Details
                 </ButtonLink>
               </div>
@@ -107,7 +114,12 @@ export function BranchActions({
       )}
       {branch.mapsUrl && (
         <ButtonLink external href={branch.mapsUrl} variant="light">
-          Map
+          <FontAwesomeIcon
+            icon={faLocationDot}
+            aria-hidden="true"
+            className="size-4 shrink-0"
+          />
+          Location
         </ButtonLink>
       )}
     </>
